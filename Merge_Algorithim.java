@@ -4,7 +4,7 @@ public class MergeSort {
         mergeSort(arr, 0, arr.length - 1);
     }
 
-    public static void mergeSort(int[] arr, int left, int right) {
+    public void mergeSort(int[] arr, int left, int right) {
         if (left < right) {
             // Find the middle of the array
             int mid = (left + right) / 2;
@@ -18,7 +18,7 @@ public class MergeSort {
         }
     }
 
-    public static void merge(int[] arr, int left, int mid, int right) {
+    public void merge(int[] arr, int left, int mid, int right) {
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
