@@ -47,7 +47,7 @@ public class SortingAlgorithms {
         count = 0;
         int i, j;
 
-        for(i = 1; i < n; i++, count++){
+        for(i = 1, count++; i < n; i++, count++){
             Record key = arr[i]; count++;
             j = i - 1; count++;
 
@@ -66,11 +66,11 @@ public class SortingAlgorithms {
         count = 0;
         int i, j;
 
-        for(i = 0; i < n; i++, count++){
+        for(i = 0, count++; i < n; i++, count++){
             int minIndex = i; count++;
 
             // Find the index of the minimum element in the remaining unsorted part
-            for(j = i + 1; j < n; j++, count++){
+            for(j = i + 1, count++; j < n; j++, count++){
                 if(arr[j].getIdNumber() < arr[minIndex].getIdNumber()){
                     count++;
                     minIndex = j; count++;
@@ -101,11 +101,9 @@ public class SortingAlgorithms {
             // Merge the sorted halves
             merge(arr, p, mid, r); count++;
         }
-
     }
 
     public void merge(Record[] arr, int p, int mid, int r){
-        count = 0;
         // p = left, r = right
 
         int n1 = mid - p + 1; count++;
@@ -117,15 +115,20 @@ public class SortingAlgorithms {
         Record[] rightArray = new Record[n2]; count++;
 
         // Copy data to temporary arrays leftArray[] and rightArray[]
-        for(int i = 0; i < n1; i++, count++){
+        int i;
+        for(i = 0, count++; i < n1; i++, count++){
             leftArray[i] = arr[p + i]; count++;
         }
-        for(int j = 0; j < n2; j++, count++){
+        int j;
+        for(j = 0, count++; j < n2; j++, count++){
             rightArray[j] = arr[mid + 1 + j]; count++;
         }
 
         // Merge the temporary arrays
-        int i = 0, j = 0, k = p; count++;
+        int k;
+        i = 0; count++;
+        j = 0; count++;
+        k = p; count++;
         while(i < n1 && j < n2){
             if(leftArray[i].getIdNumber() <= rightArray[j].getIdNumber()){
                 count++;
@@ -162,7 +165,7 @@ public class SortingAlgorithms {
         count = 0;
 
         int gap = n; count++;
-        boolean swapped; count++;
+        boolean swapped;
 
         do{
             count++;
@@ -176,7 +179,8 @@ public class SortingAlgorithms {
             swapped = false; count++;
 
             // Compare elements with a specific gap
-            for(int i = 0; i < n - gap; i++, count++){
+            int i;
+            for(i = 0, count++; i < n - gap; i++, count++){
                 int j = i + gap; count++;
                 if(arr[i].getIdNumber() > arr[j].getIdNumber()){
                     count++;

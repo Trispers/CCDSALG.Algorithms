@@ -5,13 +5,13 @@ public class Main {
 
         Record[] idRecords;
         FileReader fileReader = new FileReader();
-        idRecords = fileReader.readFile("C:/Users/markjavier/IdeaProjects/CCDSALG/src/data/random100000.txt");
+        idRecords = fileReader.readFile("C:/Users/markjavier/IdeaProjects/CCDSALG/src/data/totallyreversed.txt");
 
         long startTime = System.currentTimeMillis();
 
         // 4 sorting algorithms (remove the '//' to run the algorithm, 1 algorithm per runtime only!)
         SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
-        sortingAlgorithms.insertionSort(idRecords, size);
+        // sortingAlgorithms.insertionSort(idRecords, size);
         // sortingAlgorithms.selectionSort(idRecords, size);
         // sortingAlgorithms.mergeSort(idRecords, 0, size - 1);
         // sortingAlgorithms.combSort(idRecords, size);
