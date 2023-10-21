@@ -11,7 +11,7 @@ public class Main {
 
         // 4 sorting algorithms (remove the '//' to run the algorithm, 1 algorithm per runtime only!)
         SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
-        // sortingAlgorithms.insertionSort(idRecords, size);
+        sortingAlgorithms.insertionSort(idRecords, size);
         // sortingAlgorithms.selectionSort(idRecords, size);
         // sortingAlgorithms.mergeSort(idRecords, 0, size - 1);
         // sortingAlgorithms.combSort(idRecords, size);

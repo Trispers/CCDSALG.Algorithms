@@ -66,7 +66,7 @@ public class SortingAlgorithms {
         count = 0;
         int i, j;
 
-        for(i = 0, count++; i < n; i++, count++){
+        for(i = 0, count++; i < n - 1; i++, count++){
             int minIndex = i; count++;
 
             // Find the index of the minimum element in the remaining unsorted part
