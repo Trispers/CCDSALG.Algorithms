@@ -19,13 +19,26 @@ public class SortingAlgorithms {
     public long getCount(){
         return count;
     }
+
+    /**
+     * Prints the data or records from the text file in the program
+     *
+     * @param arr   list of records
+     * @param n     size or number of records in the text file
+     */
     public void printData(Record[] arr, int n){
         for(int i = 0; i < n; i++){
             System.out.println(arr[i].getName() + " " + arr[i].getIdNumber());
         }
     }
 
-
+    /**
+     * Verifies if the list made by the code is indeed correct
+     *
+     * @param original          original list of records
+     * @param toBeVerified      list of records to be verified
+     * @param n                 size or number of records in the text file
+     */
     public void verifyList(Record[] original, Record[] toBeVerified, int n) {
         for (int i = 0; i < n - 1; i++) {
             if (toBeVerified[i].getIdNumber() > toBeVerified[i + 1].getIdNumber()) {
@@ -44,26 +57,12 @@ public class SortingAlgorithms {
         }
     }
 
-
-    /*
-    public void verifyList(Record[] original, Record[] verify, int n){
-        for(int i = 0; i < n - 1; i++){
-            if(verify[i].getIdNumber() > verify[i + 1].getIdNumber()){
-                System.out.println("List is not sorted in ascending order.");
-            }
-        }
-
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(verify[i].getIdNumber() == original[j].getIdNumber()){
-                    if(verify[i].getName().equals(original[j].getName())){
-                        System.out.println("Name and ID doesn't match");
-                    }
-                }
-            }
-        }
-    }*/
-    
+    /**
+     * Insertion sort algorithm
+     *
+     * @param arr   list of records
+     * @param n     size or number of records in the text file
+     */
     public void insertionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
         count = 0;
@@ -83,6 +82,12 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Selection sort algorithm
+     *
+     * @param arr   list of records
+     * @param n     size or number of records in the text file
+     */
     public void selectionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
         count = 0;
@@ -106,13 +111,20 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Main method that sorts arr[p...r] using merge() method
+     *
+     * @param arr   list of records
+     * @param p     left for the 1st half
+     * @param r     right for the 2nd half
+     */
     public void mergeSort(Record[] arr, int p, int r) {
         // TODO: Implement this sorting algorithm here.
         count = 0;
         // p = left, r = right
 
         if(p < r){
-            count++; // 1 + statement/s ?
+            count++;
             // Find the middle array
             int mid = (p + r) / 2; count++;
 
@@ -125,6 +137,14 @@ public class SortingAlgorithms {
         }
     }
 
+    /**
+     * Merges two sub-arrays of arr[]
+     *
+     * @param arr   list of records
+     * @param p     1st subarray - arr[p...mid]
+     * @param mid   1st subarray - arr[p...mid] / 2nd subarray - arr[mid+1...r]
+     * @param r     2nd subarray - arr[mid+1...r]
+     */
     public void merge(Record[] arr, int p, int mid, int r){
         // p = left, r = right
 
@@ -182,6 +202,12 @@ public class SortingAlgorithms {
      * Define AT LEAST ONE more sorting algorithm here, apart from the
      * ones given above. Make sure that the method accepts an array of
      * records
+     */
+    /**
+     * Comb sort algorithm
+     *
+     * @param arr   list of records
+     * @param n     size or number of records in the text file
      */
     public void combSort(Record[] arr, int n){
         count = 0;
