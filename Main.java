@@ -23,6 +23,9 @@ public class Main {
         long executionTime = endTime - startTime;
         System.out.println("Execution Time: " + executionTime);
 
+        Record[] originalRecords = Arrays.copyOf(idRecords, idRecords.length); // Create a copy of the sorted array
+        Main.verifyList(originalRecords, idRecords, size);
+        
         long count = sortingAlgorithms.getCount();
         System.out.println("Count: " + count);
     }
