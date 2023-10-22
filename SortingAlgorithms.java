@@ -25,6 +25,27 @@ public class SortingAlgorithms {
         }
     }
 
+
+    public void verifyList(Record[] original, Record[] toBeVerified, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            if (toBeVerified[i].getIdNumber() > toBeVerified[i + 1].getIdNumber()) {
+                System.out.println("List is not sorted in ascending order.");
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (toBeVerified[i].getIdNumber() == original[j].getIdNumber()) {
+                    if (!toBeVerified[i].getName().equals(original[j].getName())) {
+                        System.out.println("ID and name do not match.");
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*
     public void verifyList(Record[] original, Record[] verify, int n){
         for(int i = 0; i < n - 1; i++){
             if(verify[i].getIdNumber() > verify[i + 1].getIdNumber()){
@@ -41,7 +62,8 @@ public class SortingAlgorithms {
                 }
             }
         }
-    }
+    }*/
+    
     public void insertionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
         count = 0;
