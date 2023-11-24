@@ -1,5 +1,8 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class SocialGraph {
@@ -9,52 +12,32 @@ public class SocialGraph {
         graph = new HashMap<>();
     }
 
-    public void graphFileReader(String filePath) {
-        Scanner scanner = null;
-        try {
-            File file = new File(filePath);
+    private boolean loadGraph(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line = reader.readLine();
+            String[] values = line.split(" ");
+            int e = Integer.parseInt(values[1]); // Number of friendships
 
-            if (!file.exists()) {
-                System.err.println("File not found.");
-                return;
+            graph = new HashMap<>();
+
+            for (int i = 0; i < e; i++) {
+                line = reader.readLine();
+                values = line.split(" ");
+                int a = Integer.parseInt(values[0]);
+                int b = Integer.parseInt(values[1]);
+
+                // Add edges to the graph (assuming friendships are bidirectional)
+                graph.computeIfAbsent(a, k -> new HashSet<>()).add(b);
+                graph.computeIfAbsent(b, k -> new HashSet<>()).add(a);
             }
 
-            scanner = new Scanner(file);
-
-            String firstLine = scanner.nextLine();
-            String[] nums = firstLine.split(" ");
-
-            int numAccounts = Integer.parseInt(nums[0]);
-            int numFriendships = Integer.parseInt(nums[1]);
-
-            for (int i = 0; i < numAccounts; i++) {
-                graph.put(i, new HashSet<>());
-            }
-
-            for (int i = 0; i < numFriendships; i++) {
-                String lines = scanner.nextLine();
-                nums = lines.split(" ");
-
-                int id1 = Integer.parseInt(nums[0]);
-                int id2 = Integer.parseInt(nums[1]);
-
-                // friendship is bidirectional
-                graph.get(id1).add(id2);
-                graph.get(id2).add(id1);
-            }
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found.");
+            return true;
+        } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.err.println("Error parsing integers.");
-            e.printStackTrace();
-        } finally {
-            if (scanner != null) {
-                scanner.close();
-            }
+            return false;
         }
     }
+    
 
     public void displayFriendList(int personID) {
         if (graph.containsKey(personID)) {
@@ -117,7 +100,7 @@ public class SocialGraph {
         System.out.print("Input file path: ");
         String filePath = scanner.nextLine();
 
-        socialGraph.graphFileReader(filePath);
+        socialGraph.loadGraph(filePath);
         System.out.println("Graph file loaded!");
 
         int choice;
@@ -155,3 +138,4 @@ public class SocialGraph {
         } while(true);
     }
 }
+
