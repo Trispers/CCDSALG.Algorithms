@@ -22,7 +22,7 @@ public class SocialGraph {
                 int a = scanner.nextInt();
                 int b = scanner.nextInt();
 
-                // Add edges to the graph (assuming friendships are bidirectional)
+                //ASsumed Bidirectional Friendships
                 graph.computeIfAbsent(a, k -> new HashSet<>()).add(b);
                 graph.computeIfAbsent(b, k -> new HashSet<>()).add(a);
             }
