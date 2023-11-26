@@ -13,18 +13,14 @@ public class SocialGraph {
     }
 
     private boolean loadGraph(String filePath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line = reader.readLine();
-            String[] values = line.split(" ");
-            int e = Integer.parseInt(values[1]); // Number of friendships
+        try (Scanner scanner = new Scanner(new FileReader(filePath))) {
+            int e = scanner.nextInt(); // Number of friendships
 
             graph = new HashMap<>();
 
             for (int i = 0; i < e; i++) {
-                line = reader.readLine();
-                values = line.split(" ");
-                int a = Integer.parseInt(values[0]);
-                int b = Integer.parseInt(values[1]);
+                int a = scanner.nextInt();
+                int b = scanner.nextInt();
 
                 // Add edges to the graph (assuming friendships are bidirectional)
                 graph.computeIfAbsent(a, k -> new HashSet<>()).add(b);
@@ -32,11 +28,12 @@ public class SocialGraph {
             }
 
             return true;
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException | NoSuchElementException | IllegalStateException | NumberFormatException e) {
             e.printStackTrace();
             return false;
         }
     }
+
     
 
     public void displayFriendList(int personID) {
