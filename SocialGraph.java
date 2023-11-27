@@ -5,13 +5,25 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * The SocialGraph class represents a social network and provides methods to load, display, and analyze its structure.
+ */
 public class SocialGraph {
-    private HashMap<Integer, Set<Integer>> graph;
+    private HashMap<Integer, Set<Integer>> graph; // social graph using person IDs and their friend sets
 
+    /**
+     * Constructs an empty SocialGraph object.
+     */
     public SocialGraph() {
         graph = new HashMap<>();
     }
 
+    /**
+     * Loads the social graph from a file.
+     *
+     * @param filePath The path to the file containing social graph data.
+     * @return True if the graph is successfully loaded, false otherwise.
+     */
     private boolean loadGraph(String filePath) {
         try (Scanner scanner = new Scanner(new FileReader(filePath))) {
             int e = scanner.nextInt(); // Number of friendships
@@ -22,7 +34,7 @@ public class SocialGraph {
                 int a = scanner.nextInt();
                 int b = scanner.nextInt();
 
-                //ASsumed Bidirectional Friendships
+                // Bidirectional Friendships
                 graph.computeIfAbsent(a, k -> new HashSet<>()).add(b);
                 graph.computeIfAbsent(b, k -> new HashSet<>()).add(a);
             }
@@ -34,8 +46,11 @@ public class SocialGraph {
         }
     }
 
-    
-
+    /**
+     * Displays the friend list of a person.
+     *
+     * @param personID The ID of the person.
+     */
     public void displayFriendList(int personID) {
         if (graph.containsKey(personID)) {
             ArrayList<Integer> friendList = new ArrayList<>(graph.get(personID));
@@ -55,6 +70,12 @@ public class SocialGraph {
         }
     }
 
+    /**
+     * Displays whether a connection exists between two persons.
+     *
+     * @param firstPerson  The ID of the first person.
+     * @param secondPerson The ID of the second person.
+     */
     public void displayConnection(int firstPerson, int secondPerson){
         if (!graph.containsKey(firstPerson) || !graph.containsKey(secondPerson)) {
             System.out.println("One or both persons do not exist in the dataset.");
@@ -69,6 +90,14 @@ public class SocialGraph {
         }
     }
 
+    /**
+     * Recursively finds a connection between two persons in the social graph.
+     *
+     * @param current  The ID of the current person during the search.
+     * @param target   The ID of the target person to find a connection to.
+     * @param visited  A set to track visited persons during the search.
+     * @return True if a connection is found, false otherwise.
+     */
     private boolean findConnection(int current, int target, HashSet<Integer> visited) {
         if (current == target) {
             return true;
@@ -90,6 +119,11 @@ public class SocialGraph {
         return false;
     }
 
+    /**
+     * The main method for user interaction and program execution.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         SocialGraph socialGraph = new SocialGraph();
@@ -135,4 +169,3 @@ public class SocialGraph {
         } while(true);
     }
 }
-
